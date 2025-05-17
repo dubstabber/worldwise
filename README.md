@@ -46,7 +46,7 @@ WorldWise is a sophisticated React application that helps travelers track and vi
 
 ```bash
 # Clone the repository
-git clone [your-repo-url]
+git clone https://github.com/dubstabber/worldwise
 
 # Navigate to the project directory
 cd worldwise
