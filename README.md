@@ -1,6 +1,6 @@
 # WorldWise 🌍✈️
 
-![WorldWise Application](https://worldwise-indol-five.vercel.app)
+> **[Live Demo](https://worldwise-indol-five.vercel.app)** - Click to see the app in action!
 
 ## 📋 Overview
 
