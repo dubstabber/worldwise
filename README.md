@@ -29,7 +29,8 @@ WorldWise is a sophisticated React application that helps travelers track and vi
 - **React DatePicker**: For intuitive date selection when adding travel entries
 
 ### Backend
-- **JSON Server**: Simulating a RESTful API for data persistence
+- **Supabase**: Providing a PostgreSQL database with real-time capabilities
+- **supabase-js**: Official JavaScript client for Supabase integration
 
 ### Development & Build Tools
 - **Vite**: For lightning-fast development and optimized production builds
@@ -54,10 +55,12 @@ cd worldwise
 # Install dependencies
 npm install
 
-# Start the JSON Server (API)
-npm run server
+# Set up environment variables
+# Create a .env file with your Supabase credentials:
+# VITE_SUPABASE_URL=your_supabase_url
+# VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-# In a new terminal, start the development server
+# Start the development server
 npm run dev
 ```
 
@@ -85,14 +88,16 @@ WorldWise is built with a modern React architecture:
 - **Performance Optimization**: Implemented React's Suspense and lazy loading for improved loading times
 - **Geolocation Integration**: Seamless browser geolocation API integration
 - **Responsive Design Approach**: Adaptable UI for all device sizes
+- **Supabase Integration**: Real-time database with PostgreSQL for data persistence
 
 ## 📊 Future Enhancements
 
-- User authentication with JWT
+- User authentication with Supabase Auth
 - Social sharing capabilities
 - Travel statistics and visualizations
 - Trip planning features
-- Photo uploads for each destination
+- Photo uploads for each destination using Supabase Storage
+- Offline functionality with local caching
 
 ## 👨‍💻 Developer Notes
 
@@ -103,8 +108,9 @@ This project demonstrates proficiency in:
 - Working with third-party APIs and libraries
 - Creating responsive and intuitive user interfaces
 - Implementing secure authentication flows
+- Backend integration with Supabase
 - Code optimization and performance tuning
 
 ---
 
-Developed with ❤️ using React, Vite, and modern web technologies.
+Developed with ❤️ using React, Vite, Supabase, and modern web technologies.
