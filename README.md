@@ -1,6 +1,6 @@
 # WorldWise 🌍✈️
 
-![WorldWise Application](https://via.placeholder.com/800x400?text=WorldWise+Travel+Tracker)
+![WorldWise Application](https://worldwise-indol-five.vercel.app)
 
 ## 📋 Overview
 
