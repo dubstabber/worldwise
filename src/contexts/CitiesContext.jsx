@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   createContext,
   useEffect,
@@ -67,7 +68,7 @@ function CitiesProvider({ children }) {
         if (error) throw error;
         
         dispatch({ type: "cities/loaded", payload: data });
-      } catch (err) {
+      } catch {
         dispatch({
           type: "rejected",
           payload: "There was an error loading cities...",
@@ -92,7 +93,7 @@ function CitiesProvider({ children }) {
         if (error) throw error;
         
         dispatch({ type: "city/loaded", payload: data });
-      } catch (err) {
+      } catch {
         dispatch({
           type: "rejected",
           payload: "There was an error loading the city...",
@@ -142,7 +143,7 @@ function CitiesProvider({ children }) {
       if (error) throw error;
       
       dispatch({ type: "city/deleted", payload: id });
-    } catch (err) {
+    } catch {
       dispatch({
         type: "rejected",
         payload: "There was an error deleting the city...",
@@ -166,6 +167,10 @@ function CitiesProvider({ children }) {
     </CitiesContext.Provider>
   );
 }
+
+CitiesProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 function useCities() {
   const context = useContext(CitiesContext);

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styles from "./CityItem.module.css";
 import { useCities } from "../contexts/CitiesContext";
@@ -36,5 +37,18 @@ function CityItem({ city }) {
     </li>
   );
 }
+
+CityItem.propTypes = {
+  city: PropTypes.shape({
+    city_name: PropTypes.string,
+    emoji: PropTypes.string,
+    date: PropTypes.string,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    position: PropTypes.shape({
+      lat: PropTypes.number,
+      lng: PropTypes.number,
+    }),
+  }).isRequired,
+};
 
 export default CityItem;

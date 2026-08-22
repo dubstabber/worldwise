@@ -1,4 +1,5 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import {
   MapContainer,
   TileLayer,
@@ -25,8 +26,12 @@ function Map() {
   } = useGeolocation();
   const [mapLat, mapLng] = useUrlPosition();
 
+  // These effects sync external inputs (the URL query params and the
+  // browser geolocation API) into local map state, which is the intended
+  // use of setState in an effect here.
   useEffect(
     function () {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
     },
     [mapLat, mapLng]
@@ -35,6 +40,7 @@ function Map() {
   useEffect(
     function () {
       if (geolocationPosition)
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
     },
     [geolocationPosition]
@@ -79,6 +85,10 @@ function ChangeCenter({ position }) {
   map.setView(position);
   return null;
 }
+
+ChangeCenter.propTypes = {
+  position: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
 
 function DetectClick() {
   const navigate = useNavigate();
