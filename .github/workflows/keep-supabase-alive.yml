@@ -1,0 +1,31 @@
+name: Keep Supabase Alive
+
+# Supabase pauses free-tier projects after ~7 days of inactivity.
+# This runs a lightweight query every 3 days to keep it awake.
+
+on:
+  schedule:
+    - cron: '0 6 */3 * *' # every 3 days at 06:00 UTC
+  workflow_dispatch: # allow manual runs from the Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query the cities table
+        env:
+          SUPABASE_URL: https://biikfiarljqbfrcwcjzf.supabase.co
+          # anon key is public by design (it already ships in the client bundle)
+          SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJpaWtmaWFybGpxYmZyY3djanpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc1MDI3NDAsImV4cCI6MjA2MzA3ODc0MH0.OPaSXGS40bjtZR_KabcaqRKqOm0x5iccNwK9fKLJA2k
+        run: |
+          echo "Pinging Supabase..."
+          status=$(curl -s -o /dev/null -w '%{http_code}' \
+            "${SUPABASE_URL}/rest/v1/cities?select=id&limit=1" \
+            -H "apikey: ${SUPABASE_ANON_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}")
+          echo "HTTP status: $status"
+          if [ "$status" -lt 200 ] || [ "$status" -ge 300 ]; then
+            echo "::error::Unexpected status $status"
+            exit 1
+          fi
+          echo "Supabase is awake."
